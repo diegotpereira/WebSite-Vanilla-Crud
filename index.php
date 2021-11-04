@@ -1,3 +1,7 @@
+<?php
+    include('funcoes.php');
+    include_once './Database.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,6 +15,8 @@
     <link rel="stylesheet" type="text/css" href="css/jstable.css" />
 
     <script src="js/jstable.min.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="css/index.css">
     
     <title>WebSite coom Vanilla + Mysql</title>
     
@@ -19,7 +25,7 @@
     <div class="container">
         <h1 class="mt-5 text-center text-danger">WebSite coom Vanilla + Mysql</h1>
 
-        <span id="success_message"></span>
+        <span id="mensagem_sucesso"></span>
         <div class="card">
             <div class="card-header">
                 <div class="row">
@@ -42,7 +48,7 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                        <?php echo buscar_cinco_principais_dados($conexao) ?>
                     </tbody>
                 </table>
             </div>
@@ -54,12 +60,12 @@
 </html>
 
 <div class="modal" id="cliente_modal" tabindex="-1">
-    <form method="POST" id="clinte_form">
+    <form method="POST" id="cliente_form">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modal_title">Adicionar Clientes</h5>
-                    <button type="button" class="btn-close" id="close_modal" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    <button type="button" class="btn-close" id="fechar_modal" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
 
                 <div class="modal-body">
@@ -92,7 +98,7 @@
 
                 <div class="modal-footer">
                     <input type="hidden" name="id" id="id" />
-                    <input type="hidden" name="acao" id="acao" value="Add" />
+                    <input type="hidden" name="acao" id="acao" value="Adicionar" />
                     <button type="button" class="btn btn-primary" id="btn_acao">Adicionar</button>
                 </div>
             </div>
