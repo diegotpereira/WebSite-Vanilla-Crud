@@ -36,20 +36,20 @@
 
                } else {
                    # code...
-                   $QUERY .= 'ORDER BY id DESC';
+                   $QUERY .= 'ORDER BY id DESC ';
                }
 
                $QUERY1 = '';
                if ($length != -1) {
                    # code...
-                   $QUERY1 = 'LIMIT'. $start . ', ' . $length;
+                  $QUERY1 = ' LIMIT ' . $start . ', ' . $length;
                }
 
                $demostracao = $conexao->prepare($QUERY);
                $demostracao->execute();
 
                $number_filter_row = $demostracao->rowCount();
-               $result = $conexao->query($query . $QUERY1);
+               $result = $conexao->query($QUERY . $QUERY1);
 
                $data = array();
 

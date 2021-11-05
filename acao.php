@@ -45,10 +45,10 @@
                 if ($_POST['acao'] == 'Adicionar') {
                     # code...
                     $QUERY = "
-                              INSERT INTO tabela_cliente 
-                                                        (nome, sobrenome, email, genero)
-                                                        Values (:nome, :sobrenome, :email, :genero)
-                                                        ";
+                            INSERT INTO tabela_cliente 
+                            (nome, sobrenome, email, genero)
+                            Values (:nome, :sobrenome, :email, :genero)
+                            ";
                     $demonstracao = $conexao->prepare($QUERY);
 
                     if ($demonstracao->execute($dados)) {
@@ -101,6 +101,20 @@
             }
 
             echo json_encode($dados);
+        }
+
+        if ($_POST['acao'] == 'deletar') {
+            # code...
+            $QUERY = "
+                      DELETE FROM tabela_cliente
+                      WHERE id = '".$_POST["id"]."' ";
+
+            if ($conexao->query($QUERY)) {
+                # code...
+                $saida ['success'] = '<div class="alert alert-success">Dados Deletados</div>';
+
+                echo json_encode($saida);
+            }
         }
     }
 ?>

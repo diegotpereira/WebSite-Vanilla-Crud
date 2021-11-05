@@ -107,3 +107,4 @@
 </div>
 
 <div class="modal-backdrop fade show" id="modal_backdrop" style="display:none;"></div>
+<script src="js/fechar_modal.js"></script>

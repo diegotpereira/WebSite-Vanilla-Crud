@@ -17,11 +17,7 @@ function abrir_modal() {
     _('cliente_modal').classList.add('show')
 }
 
-function fechar_modal() {
-    _('modal_backdrop').style.display = 'none'
-    _('cliente_modal').style.display = 'none'
-    _('cliente_modal').classList.remove('show')
-}
+
 
 function redefinirDados() {
     _('cliente_form').reset()
@@ -37,9 +33,13 @@ _('add_dados').onclick = function() {
     redefinirDados()
 }
 
-// _('fechar_modal').onclick = function() {
-//     fechar_modal()
-// }
+function fechar_modal() {
+    _('modal_backdrop').style.display = 'none'
+    _('cliente_modal').style.display = 'none'
+    _('cliente_modal').classList.remove('show')
+}
+
+
 
 window.onload = function() {
     // your code
@@ -116,6 +116,24 @@ function buscar_dados(id) {
 
         abrir_modal()
     })
+}
 
+function deletar_dados(id) {
+    if (confirm("Tem certeza que deseja removê-lo?")) {
+        var formulario_dados = new FormData()
+        formulario_dados.append('id', id)
+        formulario_dados.append('acao', 'deletar')
 
+        fetch('acao.php', {
+            method: "POST",
+            body: formulario_dados
+
+        }).then(function(response) {
+            return response.json()
+
+        }).then(function(responseData) {
+            _('mensagem_sucesso').innerHTML = responseData.success
+            table.update()
+        })
+    }
 }
